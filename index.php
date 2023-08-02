@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 
     <title>Demo</title>
-    <style>
+    <!-- <style>
         body {
             display: grid;
             place-items: center;
@@ -13,29 +13,42 @@
             margin: 0;
             font-family: sans-serif;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
-
-    <h1>Recommended Books</h1>
     <?php
     $books = [
-        " Do Androids Dream of Electric Sheep",
-        "The Langoliers",
-        "Hail Mary"
-    ]
-        ?>
-    <ul>
-        <?php foreach ($books as $book) {
-            echo "<li>{$book} tm</li>";
-        } ?>
-    </ul>
+        [
+            'name' => 'Do Androids Dream of Electric Sheep',
+            'author' => 'Philip K. DIck',
+            'purchaseUrl' => 'http://example.com',
+            'year'=>'1976'
+        ],
+        [
+            'name' => 'Langoliers',
+            'author' => 'Ima K. DIck',
+            'purchaseUrl' => 'http://example.com',
+            'year'=>'1966'
+        ],
+        [
+            'name' => 'Dark Matter',
+            'author' => 'Philip K. DIck',
+            'purchaseUrl' => 'http://example.com',
+            'year'=>'1956'
+        ],
+
+    ];
+    ?>
+
     <ul>
         <?php foreach ($books as $book): ?>
-            <li><?= $book ?></li>
+            <a href="<?= $book['purchaseUrl'] ?>">
+                <li><?= "{$book['name']} {$book['year']}"; ?></li>
+            </a>
         <?php endforeach; ?>
     </ul>
+
 </body>
 
 </html>
