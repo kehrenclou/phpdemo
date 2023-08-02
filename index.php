@@ -23,19 +23,19 @@
             'name' => 'Do Androids Dream of Electric Sheep',
             'author' => 'Philip K. DIck',
             'purchaseUrl' => 'http://example.com',
-            'year'=>'1976'
+            'year' => '1976'
         ],
         [
             'name' => 'Langoliers',
             'author' => 'Ima K. DIck',
             'purchaseUrl' => 'http://example.com',
-            'year'=>'1966'
+            'year' => '1966'
         ],
         [
             'name' => 'Dark Matter',
             'author' => 'Philip K. DIck',
             'purchaseUrl' => 'http://example.com',
-            'year'=>'1956'
+            'year' => '1956'
         ],
 
     ];
@@ -43,12 +43,24 @@
 
     <ul>
         <?php foreach ($books as $book): ?>
-            <a href="<?= $book['purchaseUrl'] ?>">
-                <li><?= "{$book['name']} {$book['year']}"; ?></li>
-            </a>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= "{$book['name']} {$book['year']}"; ?>
+                </a>
+            </li>
         <?php endforeach; ?>
     </ul>
 
+  <h1>Solution</h1>
+    <ul>
+        <?php foreach ($books as $book): ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name'] ?>     <?= $book['year'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </body>
 
 </html>
