@@ -23,44 +23,65 @@
             'name' => 'Do Androids Dream of Electric Sheep',
             'author' => 'Philip K. DIck',
             'purchaseUrl' => 'http://example.com',
-            'year' => '1976'
+            'releaseYear' => '1968'
         ],
         [
-            'name' => 'Langoliers',
-            'author' => 'Ima K. DIck',
+            'name' => 'Project Hail Mary',
+            'author' => 'Andy Weir',
             'purchaseUrl' => 'http://example.com',
-            'year' => '1966'
+            'releaseYear' => '2021'
         ],
         [
-            'name' => 'Dark Matter',
-            'author' => 'Philip K. DIck',
+            'name' => 'The Martian',
+            'author' => 'Andy Weir',
             'purchaseUrl' => 'http://example.com',
-            'year' => '1956'
+            'releaseYear' => '2011'
         ],
 
     ];
+
+    function filterByAuthor($books, $author)
+    {
+        $filteredBooks = [];
+
+        foreach ($books as $book) {
+            if ($book['author'] === $author) {
+                $filteredBooks[] = $book;
+            }
+        }
+        return $filteredBooks;
+    }
     ?>
 
+
+
+    <h1>FIlter for Andy Weir conditional statement</h1>
     <ul>
         <?php foreach ($books as $book): ?>
-            <li>
-                <a href="<?= $book['purchaseUrl'] ?>">
-                    <?= "{$book['name']} {$book['year']}"; ?>
-                </a>
-            </li>
+            <?php if ($book['author'] === 'Andy Weir'): ?>
+                <li>
+                    <a href="<?= $book['purchaseUrl'] ?>">
+                        <?= $book['name']; ?>         <?= $book['releaseYear'] ?>
+                    </a>
+                </li>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
 
-  <h1>Solution</h1>
+    <h2>Use filterByAuthor function to filter</h2>
     <ul>
-        <?php foreach ($books as $book): ?>
-            <li>
-                <a href="<?= $book['purchaseUrl'] ?>">
-                    <?= $book['name'] ?>     <?= $book['year'] ?>
-                </a>
-            </li>
+        <?php foreach (filterByAuthor($books, 'Andy Weir') as $book): ?>
+            <?php if ($book['author'] === 'Andy Weir'): ?>
+                <li>
+                    <a href="<?= $book['purchaseUrl'] ?>">
+                        <?= $book['name']; ?>         <?= $book['releaseYear'] ?>
+                    </a>
+                </li>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+
+
 </body>
 
 </html>
