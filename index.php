@@ -17,19 +17,25 @@
 </head>
 
 <body>
-    <?php
-    $name = "Dark Matter";
-    $read = true;
-    if ($read) {
-        $message = "You have read $name";
-    } else {
-        $message = "You need to read $name!";
-    }
 
-    ?>
-    <h1>
-        <?= $message; ?>
-    </h1>
+    <h1>Recommended Books</h1>
+    <?php
+    $books = [
+        " Do Androids Dream of Electric Sheep",
+        "The Langoliers",
+        "Hail Mary"
+    ]
+        ?>
+    <ul>
+        <?php foreach ($books as $book) {
+            echo "<li>{$book} tm</li>";
+        } ?>
+    </ul>
+    <ul>
+        <?php foreach ($books as $book): ?>
+            <li><?= $book ?></li>
+        <?php endforeach; ?>
+    </ul>
 </body>
 
 </html>
