@@ -39,6 +39,21 @@
         ],
 
     ];
+    $movies = [
+        [
+            'name' => 'Pink Panther',
+            'releaseYear' => '1968'
+        ],
+        [
+            'name' => 'Tenacious D ',
+            'releaseYear' => '2006'
+        ],
+        [
+            'name' => 'Barbie',
+            'releaseYear' => '2023'
+        ],
+
+    ];
 
     function filterByAuthor($books, $author)
     {
@@ -50,6 +65,18 @@
             }
         }
         return $filteredBooks;
+    }
+
+    function filterByDate($movies, $date)
+    {
+        $filteredMovies = [];
+
+        foreach ($movies as $movie) {
+            if ($movie['releaseYear'] >= $date) {
+                $filteredMovies[] = $movie;
+            }
+        }
+        return $filteredMovies;
     }
     ?>
 
@@ -71,16 +98,25 @@
     <h2>Use filterByAuthor function to filter</h2>
     <ul>
         <?php foreach (filterByAuthor($books, 'Andy Weir') as $book): ?>
-            <?php if ($book['author'] === 'Andy Weir'): ?>
-                <li>
-                    <a href="<?= $book['purchaseUrl'] ?>">
-                        <?= $book['name']; ?>         <?= $book['releaseYear'] ?>
-                    </a>
-                </li>
-            <?php endif; ?>
+
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?>     <?= $book['releaseYear'] ?>
+                </a>
+            </li>
+
         <?php endforeach; ?>
     </ul>
+    <h2>Use filterByDate function to filter Movies</h2>
+    <ul>
+        <?php foreach (filterByDate($movies, '2000') as $movie): ?>
 
+            <li>
+                <?= $movie['name']; ?>     <?= $movie['releaseYear']; ?>
+            </li>
+
+        <?php endforeach; ?>
+    </ul>
 
 </body>
 
