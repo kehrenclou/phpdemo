@@ -54,6 +54,37 @@
         ],
 
     ];
+    function filter($items, $key, $value)
+    {
+        $filteredItems = [];
+
+        foreach ($items as $item) {
+            if ($item[$key] >= $value) {
+                $filteredItems[] = $item;
+            }
+        }
+        return $filteredItems;
+    }
+    $filteredBooks = filter($books, 'releaseYear', '2000');
+    function filterRefactor($items, $fn)
+    {
+        $filteredItems = [];
+
+        foreach ($items as $item) {
+            if ($fn($item)) {
+                $filteredItems[] = $item;
+            }
+        }
+        return $filteredItems;
+    }
+
+
+    $filteredBooksRefactor = filterRefactor($books, function ($book) {
+        return $book['releaseYear'] >= 2000;
+    });
+    $filteredBooksPhpArrayFilter = array_filter($books, function ($book) {
+        return $book['releaseYear'] >= 1950 && $book['releaseYear'] <= 2000;
+    });
 
     function filterByAuthor($books, $author)
     {
@@ -116,6 +147,32 @@
             </li>
 
         <?php endforeach; ?>
+    </ul>
+    <h2>Use filter to check movie by year</h2>
+    <ul>
+        <?php foreach (filter($movies, 'releaseYear', '2000') as $movie): ?>
+
+            <li>
+                <?= $movie['name']; ?>     <?= $movie['releaseYear']; ?>
+            </li>
+
+        <?php endforeach; ?>
+    </ul>
+    <h2>Filter refactor with function</h2>
+    <ul>
+        <?php foreach ($filteredBooksRefactor as $book): ?>
+            <li>
+                <?= $book['name']; ?>     <?= $book['releaseYear']; ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
+    <h2>Filter refactor with array function</h2>
+    <ul>
+        <?php foreach ($filteredBooksPhpArrayFilter as $book): ?>
+            <li>
+                <?= $book['name']; ?>     <?= $book['releaseYear']; ?>
+            </li>
+        <?php endforeach ?>
     </ul>
 
 </body>
